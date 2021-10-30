@@ -1,0 +1,1 @@
+insert into espacio (nombre, estado) values (:nombre, :estado)
