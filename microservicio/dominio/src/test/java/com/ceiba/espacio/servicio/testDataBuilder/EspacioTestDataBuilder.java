@@ -1,4 +1,4 @@
-package com.ceiba.espacio.servicio.testDataBuilder;
+package com.ceiba.espacio.servicio.testdatabuilder;
 
 import com.ceiba.espacio.modelo.entidad.Espacio;
 

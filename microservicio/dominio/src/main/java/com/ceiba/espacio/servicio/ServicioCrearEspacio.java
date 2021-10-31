@@ -11,6 +11,7 @@ public class ServicioCrearEspacio {
     private final RepositorioEspacio repositorioEspacio;
 
     public ServicioCrearEspacio(RepositorioEspacio repositorioEspacio) {
+
         this.repositorioEspacio = repositorioEspacio;
     }
 

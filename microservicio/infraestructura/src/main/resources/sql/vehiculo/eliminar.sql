@@ -1,3 +1,3 @@
 delete
-from espacio
+from vehiculo
 where id = :id

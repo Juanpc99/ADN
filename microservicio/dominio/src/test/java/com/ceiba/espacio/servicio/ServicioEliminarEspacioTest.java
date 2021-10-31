@@ -9,7 +9,7 @@ public class ServicioEliminarEspacioTest {
 
     @Test
     @DisplayName("Deberia eliminar el espacio llamando al repositorio")
-    void deberiaElminarElEspacioLlamandoAlRepositori(){
+    void deberiaElminarElEspacioLlamandoAlRepositorio(){
         // arrange
         RepositorioEspacio repositorioEspacio = Mockito.mock(RepositorioEspacio.class);
         ServicioEliminarEspacio servicioEliminarEspacio  = new ServicioEliminarEspacio(repositorioEspacio);

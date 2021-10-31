@@ -5,24 +5,16 @@ import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.espacio.modelo.entidad.Espacio;
 import com.ceiba.espacio.puerto.repositorio.RepositorioEspacio;
-import com.ceiba.espacio.servicio.testDataBuilder.EspacioTestDataBuilder;
+import com.ceiba.espacio.servicio.testdatabuilder.EspacioTestDataBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ServicioCrearEspacioTest {
 
-    @Test
-    @DisplayName("Deberia lanzar una excepcion cuando la longitud del nombre es menor a 3")
-    void debriaLanzarUnaExcepcionCuandoLaLongitudDelNombreEsMenorATres(){
-        // arrange
-        EspacioTestDataBuilder espacioTestDataBuilder = new EspacioTestDataBuilder().conNombre("12");
-        // act -assert
-        BasePrueba.assertThrows(espacioTestDataBuilder::build, ExcepcionLongitudValor.class, "El nombre debe tener una longitud igual a 3");
-    }
+
     @Test
     @DisplayName("Deberia lanzar una excepcion cuando se valide la existencia del espacio")
     void deberiaLanzarUnaExcepcionCuandoSeValideLaExistenciaDelEspacio(){

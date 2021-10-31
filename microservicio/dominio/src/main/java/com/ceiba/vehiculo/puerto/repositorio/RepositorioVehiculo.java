@@ -36,4 +36,11 @@ public interface RepositorioVehiculo {
      * @return si existe o no
      */
     boolean existePorId(Long id);
+
+    /**
+     * Permite validar si existe por el id de un espacio
+     * @param id
+     * @return si existe o no
+     */
+    boolean existePorIdEspacio(Long id);
 }
