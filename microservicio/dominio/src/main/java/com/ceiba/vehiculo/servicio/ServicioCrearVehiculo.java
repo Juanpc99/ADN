@@ -22,9 +22,9 @@ public class ServicioCrearVehiculo {
     }
 
     public Long ejecutar(Vehiculo vehiculo) {
-        validarExistenciaPreviaEspacio(vehiculo.getIdEspacio());
-        validarExistenciaPreviaIdEspacio(vehiculo.getId());
         validarExistenciaPrevia(vehiculo);
+        validarExistenciaPreviaEspacio(vehiculo.getIdEspacio());
+        validarExistenciaPreviaIdEspacio(vehiculo.getIdEspacio());
         return this.repositorioVehiculo.crear(vehiculo);
     }
 

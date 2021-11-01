@@ -11,6 +11,8 @@ import org.mockito.Mockito;
 
 public class ServicioActualizarEspacioTest {
 
+    private static final String EL_ESPACIO_NO_EXISTE_EN_EL_SISTEMA = "El espacio no existe en el sistema";
+
     @Test
     @DisplayName("Debera validar la existencia previa del espacio")
     void debraValidarLaExistenciaPreviaDelEspacio(){
@@ -20,7 +22,7 @@ public class ServicioActualizarEspacioTest {
         Mockito.when(repositorioEspacio.existePorId(Mockito.anyLong())).thenReturn(false);
         ServicioActualizarEspacio servicioActualizarEspacio = new ServicioActualizarEspacio(repositorioEspacio);
         //Act - assert
-        BasePrueba.assertThrows(() -> servicioActualizarEspacio.ejecutar(espacio), ExcepcionDuplicidad.class, "El espacio no existe en el sistema");
+        BasePrueba.assertThrows(() -> servicioActualizarEspacio.ejecutar(espacio), ExcepcionDuplicidad.class, EL_ESPACIO_NO_EXISTE_EN_EL_SISTEMA);
 
     }
 

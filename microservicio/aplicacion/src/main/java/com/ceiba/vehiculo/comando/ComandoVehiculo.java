@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 @Getter
 @Setter
-
+@AllArgsConstructor
 @NoArgsConstructor
 public class ComandoVehiculo {
     private Long id;

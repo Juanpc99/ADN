@@ -29,16 +29,3 @@ public class MapeoVehiculo implements RowMapper<DtoVehiculo>, MapperResult {
 
     }
 }
-/**
-    private Long id;
-    private String placa;
-    private Long idEspacio;
-    private String tipoVehiculo;
-    private String modeloVehiculo;
-    private String nombrePropietario;
-    private String apellidoPropietario;
-    private LocalDateTime fechaEntrada;
-    private LocalDateTime fechaSalida;
-    private Double totalPagar;
-    private Double precioBaseHora;
- */

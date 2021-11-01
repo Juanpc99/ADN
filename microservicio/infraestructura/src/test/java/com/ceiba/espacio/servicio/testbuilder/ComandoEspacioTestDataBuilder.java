@@ -16,11 +16,12 @@ public class ComandoEspacioTestDataBuilder {
         this.nombre = RandomStringUtils.random(MAXIMO_DE_CARACTERES, "asfaffasfsafsaf");
         this.estado = "A";
     }
+    /**
     public ComandoEspacioTestDataBuilder conNombre(String nombre){
         this.nombre = nombre;
         return this;
     }
-
+*/
     public ComandoEspacio build(){
         return new ComandoEspacio(id, nombre, estado);
     }

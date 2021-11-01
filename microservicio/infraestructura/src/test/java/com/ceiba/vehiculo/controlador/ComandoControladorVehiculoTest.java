@@ -1,11 +1,11 @@
-package com.ceiba.espacio.controlador;
-
-
-
+package com.ceiba.vehiculo.controlador;
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.espacio.comando.ComandoEspacio;
+import com.ceiba.espacio.controlador.ComandoControladorEspacio;
 import com.ceiba.espacio.servicio.testbuilder.ComandoEspacioTestDataBuilder;
+import com.ceiba.vehiculo.comando.ComandoVehiculo;
+import com.ceiba.vehiculo.servicio.testbuilder.ComandoVehiculoTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,10 +23,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(ComandoControladorEspacio.class)
+@WebMvcTest(ComandoControladorVehiculo.class)
 @ContextConfiguration(classes= ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class ComandoControladorEspacioTest {
+public class ComandoControladorVehiculoTest {
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -35,47 +35,44 @@ public class ComandoControladorEspacioTest {
     private MockMvc mockMvc;
 
     @Test
-    @DisplayName("Deberia crear un espacio")
-    void deberiaCrearUnEspacio() throws Exception{
+    @DisplayName("Deberia crear un vehiculo")
+    void deberiaCrearUnVehiculo() throws Exception{
         // arrange
-        ComandoEspacio espacio = new ComandoEspacioTestDataBuilder().build();
+        ComandoVehiculo vehiculo = new ComandoVehiculoTestDataBuilder().build();
         // act - assert
-        mockMvc.perform(post("/espacio")
+        mockMvc.perform(post("/vehiculo")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(espacio)))
+                .content(objectMapper.writeValueAsString(vehiculo)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 3}"));
-
+                .andExpect(content().json("{valor: 2}"));
     }
 
     @Test
-    @DisplayName("Deberia actualizar un espacio")
-    void deberiaActualizarUnEspacio() throws Exception{
+    @DisplayName("Deberia actualizar un vehiculo")
+    void deberiaActualizarUnVehiculo() throws Exception{
         // arrange
         Long id = 1L;
-        ComandoEspacio espacio = new ComandoEspacioTestDataBuilder().build();
+        ComandoVehiculo vehiculo = new ComandoVehiculoTestDataBuilder().build();
         // act - assert
-        mockMvc.perform(put("/espacio/{id}",id)
-                 .contentType(MediaType.APPLICATION_JSON)
-                 .content(objectMapper.writeValueAsString(espacio)))
-                 .andExpect(status().isOk());
+        mockMvc.perform(put("/vehiculo/{id}",id)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(vehiculo)))
+                .andExpect(status().isOk());
     }
 
     @Test
-    @DisplayName("Debe eliminar un espacio")
-    void debeEliminarUnEspacio() throws Exception{
+    @DisplayName("Debe eliminar un vehiculo")
+    void debeEliminarUnVehiculo() throws Exception{
         // arrange
-        Long id = 2L;
+        Long id = 1L;
         // act - assert
-        mockMvc.perform(delete("/espacio/{id}",id)
+        mockMvc.perform(delete("/vehiculo/{id}",id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-
-        mockMvc.perform(get("/espacio")
+        mockMvc.perform(get("/vehiculo")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)));
+                .andExpect(jsonPath("$", hasSize(0)));
     }
-
 }

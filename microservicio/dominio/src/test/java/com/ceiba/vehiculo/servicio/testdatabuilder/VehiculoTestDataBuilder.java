@@ -33,7 +33,7 @@ public class VehiculoTestDataBuilder {
         this.precioBaseHora = 15000.0;
     }
 
-    public VehiculoTestDataBuilder conPlaca(String Placa){
+    public VehiculoTestDataBuilder conPlaca(String placa){
         this.placa = placa;
         return this;
     }

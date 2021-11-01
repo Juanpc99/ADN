@@ -19,10 +19,9 @@ public class Vehiculo {
     private static final String SE_DEBE_INGRESAR_LA_FECHA_ENTRADA = "Se debe ingresar la fecha de entrada del vehiculo";
     private static final String SE_DEBE_INGRESA_EL_PRECIO_BASE_POR_HORA = "Se debe ingresar el precio base por hora";
     private static final String EL_ESTACIONAMIENTO_TODAVIA_NO_ABRE = "El estacionamiento todavia no abre";
-    private static final String EL_ESTACIONAMIENTO_YA_CERRO = "El estacionamiento ya cerro";
 
     private static final Integer HORA_INICIO_JORNADA = 6;
-    private static final Integer HORA_FIN_JORNADA = 23;
+
 
 
     private Long id;
@@ -50,7 +49,6 @@ public class Vehiculo {
         validarObligatorio(fechaEntrada, SE_DEBE_INGRESAR_LA_FECHA_ENTRADA);
         validarObligatorio(precioBaseHora, SE_DEBE_INGRESA_EL_PRECIO_BASE_POR_HORA);
         validarMenor(HORA_INICIO_JORNADA, fechaEntrada.getHour(), EL_ESTACIONAMIENTO_TODAVIA_NO_ABRE);
-        validarMenor(fechaEntrada.getHour(), HORA_FIN_JORNADA, EL_ESTACIONAMIENTO_YA_CERRO);
 
 
         this.id = id;
