@@ -49,6 +49,19 @@ public class ComandoControladorEspacioTest {
     }
 
     @Test
+    void deberiaFallarAlCrearUnEspacioConNombreRepetido() throws Exception{
+        // arrange
+        ComandoEspacio espacio = new ComandoEspacioTestDataBuilder().conNombre("A00").build();
+        // act - assert
+        mockMvc.perform(post("/espacio")
+                 .contentType(MediaType.APPLICATION_JSON)
+                 .content(objectMapper.writeValueAsString(espacio)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("{'nombreExcepcion':'ExcepcionDuplicidad', 'mensaje': 'El espacio ya existe en el sistema'}"));
+
+    }
+
+    @Test
     @DisplayName("Deberia actualizar un espacio")
     void deberiaActualizarUnEspacio() throws Exception{
         // arrange
@@ -60,6 +73,19 @@ public class ComandoControladorEspacioTest {
                  .content(objectMapper.writeValueAsString(espacio)))
                  .andExpect(status().isOk());
     }
+    @Test
+    void deberiaFallarAlActualizarUnEspacioQueNoExiste() throws Exception{
+        Long id = 23L;
+        ComandoEspacio espacio = new ComandoEspacioTestDataBuilder().build();
+        // act - assert
+        mockMvc.perform(put("/espacio/{id}",id)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(espacio)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("{'nombreExcepcion':'ExcepcionDuplicidad', 'mensaje': 'El espacio no existe en el sistema'}"));
+    }
+
+
 
     @Test
     @DisplayName("Debe eliminar un espacio")

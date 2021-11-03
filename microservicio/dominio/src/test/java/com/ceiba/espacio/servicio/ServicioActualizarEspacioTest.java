@@ -26,6 +26,7 @@ public class ServicioActualizarEspacioTest {
 
     }
 
+
     @Test
     @DisplayName("Deberia actualizar correctamente en el repositorio")
     void deberiaActualizarCorrectamenteEnElRepositorio(){

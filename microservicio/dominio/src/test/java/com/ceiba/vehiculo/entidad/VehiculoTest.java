@@ -1,6 +1,7 @@
 package com.ceiba.vehiculo.entidad;
 
 import com.ceiba.BasePrueba;
+import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.espacio.servicio.testdatabuilder.EspacioTestDataBuilder;
@@ -44,7 +45,40 @@ public class VehiculoTest {
         assertEquals(fechaSalida, vehiculo.getFechaSalida());
         assertEquals(37500, vehiculo.getTotalPagar());
         assertEquals(15000, vehiculo.getPrecioBaseHora());
+        assertEquals(1, vehiculo.getIdEspacio());
+        assertEquals("Carro", vehiculo.getTipoVehiculo());
+        assertEquals("Mazda 3 2010", vehiculo.getModeloVehiculo());
+        assertEquals("Juan", vehiculo.getNombrePropietario());
+        assertEquals("Caro", vehiculo.getApellidoPropietario());
 
+    }
+    @Test
+    void debeCalcularElTotalAPagarEnHorarioNormal(){
+        LocalDateTime fechaEntrada = LocalDateTime.of(LocalDate.of(2021, 10, 11), LocalTime.of(10, 32));
+        LocalDateTime fechaSalida = LocalDateTime.of(LocalDate.of(2021, 10, 11), LocalTime.of(13, 40));
+
+        Vehiculo vehiculo = new VehiculoTestDataBuilder().conId(1L).conFechaEntrada(fechaEntrada).conFechaSalida(fechaSalida).build();
+
+        assertEquals(45000 ,vehiculo.getTotalPagar());
+
+    }
+    @Test
+    void debeCalcularElTotalAPagarEnHOrarioNocturno(){
+        LocalDateTime fechaEntrada = LocalDateTime.of(LocalDate.of(2021, 10, 11), LocalTime.of(19, 32));
+        LocalDateTime fechaSalida = LocalDateTime.of(LocalDate.of(2021, 10, 11), LocalTime.of(21, 40));
+
+        Vehiculo vehiculo = new VehiculoTestDataBuilder().conId(1L).conFechaEntrada(fechaEntrada).conFechaSalida(fechaSalida).build();
+
+        assertEquals(34500 ,vehiculo.getTotalPagar());
+    }
+    @Test
+    void debeCalcularElTotalAPagarConHorasNormalesYNocturnas(){
+        LocalDateTime fechaEntrada = LocalDateTime.of(LocalDate.of(2021, 10, 11), LocalTime.of(17, 32));
+        LocalDateTime fechaSalida = LocalDateTime.of(LocalDate.of(2021, 10, 11), LocalTime.of(19, 40));
+
+        Vehiculo vehiculo = new VehiculoTestDataBuilder().conId(1L).conFechaEntrada(fechaEntrada).conFechaSalida(fechaSalida).build();
+
+        assertEquals(32250 ,vehiculo.getTotalPagar());
     }
     @Test
     void debeFallarSinPlaca(){
@@ -114,6 +148,5 @@ public class VehiculoTest {
             vehiculoTestDataBuilder.build();
         },ExcepcionValorInvalido.class, EL_ESTACIONAMIENTO_TODAVIA_NO_ABRE);
     }
-
 
 }

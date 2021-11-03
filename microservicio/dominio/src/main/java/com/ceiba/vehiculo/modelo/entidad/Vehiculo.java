@@ -1,12 +1,12 @@
 package com.ceiba.vehiculo.modelo.entidad;
 
+import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import lombok.Getter;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
-import static com.ceiba.dominio.ValidadorArgumento.validarMenor;
-import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
+import static com.ceiba.dominio.ValidadorArgumento.*;
 
 @Getter
 public class Vehiculo {
@@ -19,9 +19,11 @@ public class Vehiculo {
     private static final String SE_DEBE_INGRESAR_LA_FECHA_ENTRADA = "Se debe ingresar la fecha de entrada del vehiculo";
     private static final String SE_DEBE_INGRESA_EL_PRECIO_BASE_POR_HORA = "Se debe ingresar el precio base por hora";
     private static final String EL_ESTACIONAMIENTO_TODAVIA_NO_ABRE = "El estacionamiento todavia no abre";
+    private static final String LA_HORA_DE_ENTRAD_NO_ES_VALIDA = "La hora de entrada no es valida";
 
     private static final Integer HORA_INICIO_JORNADA = 6;
-
+    private static final Integer HORA_FIN_JORNADA = 1;
+    private static final Integer HORA_NOCTURNA = 18;
 
 
     private Long id;
@@ -50,7 +52,6 @@ public class Vehiculo {
         validarObligatorio(precioBaseHora, SE_DEBE_INGRESA_EL_PRECIO_BASE_POR_HORA);
         validarMenor(HORA_INICIO_JORNADA, fechaEntrada.getHour(), EL_ESTACIONAMIENTO_TODAVIA_NO_ABRE);
 
-
         this.id = id;
         this.placa = placa;
         this.idEspacio = idEspacio;
@@ -64,27 +65,35 @@ public class Vehiculo {
         this.precioBaseHora = precioBaseHora;
     }
 
-    public Double calcularTotal(Double precioBaseHora, LocalDateTime fechaEntrada, LocalDateTime fechaSalida){
+
+
+    public Double calcularTotal(Double precioBaseHora, LocalDateTime fechaEntrada, LocalDateTime fechaSalida) {
         Double total = 0.0;
-        if(fechaSalida == null){
-            return total;
-        }
-        else if(fechaEntrada.getHour() >= 18){
-            Integer totalHoras = totalHoras(fechaEntrada, fechaSalida);
-            return total = (totalHoras * precioBaseHora) + (precioBaseHora * totalHoras * 0.15);
-        }
-        else if(fechaEntrada.getDayOfWeek() == DayOfWeek.SATURDAY || fechaEntrada.getDayOfWeek() == DayOfWeek.SUNDAY){
+
+        if (fechaEntrada.getDayOfWeek() == DayOfWeek.SATURDAY || fechaEntrada.getDayOfWeek() == DayOfWeek.SUNDAY) {
             Integer totalHoras = totalHoras(fechaEntrada, fechaSalida);
             return total = (totalHoras * precioBaseHora) + (precioBaseHora * totalHoras * 0.25);
         }else {
-            Integer totalHoras = totalHoras(fechaEntrada, fechaSalida);
-            return total = (totalHoras * precioBaseHora);
+            for (int i = fechaEntrada.getHour(); i < fechaSalida.getHour(); i++) {
+
+                if (i >= HORA_NOCTURNA) {
+                   // Integer totalHoras = totalHoras(fechaEntrada, fechaSalida);
+                    total = precioBaseHora + (precioBaseHora * 0.15) + total;
+
+                } else {
+                    //Integer totalHoras = totalHoras(fechaEntrada, fechaSalida);
+                    total = precioBaseHora + total;
+                }
+            }
         }
+        return total;
     }
+
     public Integer totalHoras(LocalDateTime fechaEntrada, LocalDateTime fechaSalida){
         Integer horasEntrada = fechaEntrada.getHour();
         Integer horasSalida = fechaSalida.getHour();
         Integer totalHoras = horasSalida - horasEntrada;
         return totalHoras;
     }
+
 }

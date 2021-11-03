@@ -1,9 +1,7 @@
 package com.ceiba.espacio.servicio.testbuilder;
 
 import com.ceiba.espacio.comando.ComandoEspacio;
-import org.apache.commons.lang3.RandomStringUtils;
 
-import java.util.UUID;
 
 public class ComandoEspacioTestDataBuilder {
     private static final Integer MAXIMO_DE_CARACTERES = 3;
@@ -13,15 +11,17 @@ public class ComandoEspacioTestDataBuilder {
     private String estado;
 
     public ComandoEspacioTestDataBuilder(){
-        this.nombre = RandomStringUtils.random(MAXIMO_DE_CARACTERES, "asfaffasfsafsaf");
+        this.nombre = "A99";
         this.estado = "A";
     }
-    /**
     public ComandoEspacioTestDataBuilder conNombre(String nombre){
         this.nombre = nombre;
         return this;
     }
-*/
+    public ComandoEspacioTestDataBuilder conId(Long id){
+        this.id = id;
+        return this;
+    }
     public ComandoEspacio build(){
         return new ComandoEspacio(id, nombre, estado);
     }
