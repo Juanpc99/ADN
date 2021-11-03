@@ -14,13 +14,15 @@ public class ServicioActualizarVehiculo {
     }
 
     public void ejecutar(Vehiculo vehiculo) {
-        validarExistenciaPrevia(vehiculo);
+       // validarExistenciaPrevia(vehiculo);
         this.repositorioVehiculo.actualizar(vehiculo);
     }
+
     private void validarExistenciaPrevia(Vehiculo vehiculo) {
         boolean existe = this.repositorioVehiculo.existePorId(vehiculo.getId());
         if(!existe) {
             throw new ExcepcionDuplicidad(EL_VEHICULO_NO_EXISTE_EN_EL_SISTEMA);
         }
     }
+
 }
