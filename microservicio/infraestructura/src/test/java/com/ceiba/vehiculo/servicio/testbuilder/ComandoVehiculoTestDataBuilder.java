@@ -34,7 +34,18 @@ public class ComandoVehiculoTestDataBuilder {
         this.fechaSalida = LocalDateTime.of(LocalDate.of(2021, 11, 1), LocalTime.of(16, 06));
         this.precioBaseHora = 12000.0;
     }
-
+    public ComandoVehiculoTestDataBuilder conId(Long id){
+        this.id = id;
+        return this;
+    }
+    public ComandoVehiculoTestDataBuilder conPlaca(String placa){
+        this.placa = placa;
+        return this;
+    }
+    public ComandoVehiculoTestDataBuilder conIdEspacio(Long idEspacio){
+        this.idEspacio = idEspacio;
+        return this;
+    }
     public ComandoVehiculo build(){
         return new ComandoVehiculo(id, placa, idEspacio, tipoVehiculo, modeloVehiculo, nombrePropietario,
         apellidoPropietario, fechaEntrada, fechaSalida, precioBaseHora
