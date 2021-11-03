@@ -14,7 +14,7 @@ public class ServicioActualizarVehiculo {
     }
 
     public void ejecutar(Vehiculo vehiculo) {
-       // validarExistenciaPrevia(vehiculo);
+        validarExistenciaPrevia(vehiculo);
         this.repositorioVehiculo.actualizar(vehiculo);
     }
 
