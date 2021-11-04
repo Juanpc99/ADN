@@ -1,6 +1,7 @@
 package com.ceiba.vehiculo.modelo.entidad;
 
-
+import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
+import lombok.Getter;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -62,49 +63,7 @@ public class Vehiculo {
         this.precioBaseHora = precioBaseHora;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getPlaca() {
-        return placa;
-    }
-
-    public Long getIdEspacio() {
-        return idEspacio;
-    }
-
-    public String getTipoVehiculo() {
-        return tipoVehiculo;
-    }
-
-    public String getModeloVehiculo() {
-        return modeloVehiculo;
-    }
-
-    public String getNombrePropietario() {
-        return nombrePropietario;
-    }
-
-    public String getApellidoPropietario() {
-        return apellidoPropietario;
-    }
-
-    public LocalDateTime getFechaEntrada() {
-        return fechaEntrada;
-    }
-
-    public LocalDateTime getFechaSalida() {
-        return fechaSalida;
-    }
-
-    public Double getTotalPagar() {
-        return totalPagar;
-    }
-
-    public Double getPrecioBaseHora() {
-        return precioBaseHora;
-    }
 
     public Double calcularTotal(Double precioBaseHora, LocalDateTime fechaEntrada, LocalDateTime fechaSalida) {
         Double total = 0.0;
