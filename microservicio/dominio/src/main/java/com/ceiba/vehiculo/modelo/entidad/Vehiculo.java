@@ -69,19 +69,19 @@ public class Vehiculo {
 
     public Double calcularTotal(Double precioBaseHora, LocalDateTime fechaEntrada, LocalDateTime fechaSalida) {
         Double total = 0.0;
-
-        if (fechaEntrada.getDayOfWeek() == DayOfWeek.SATURDAY || fechaEntrada.getDayOfWeek() == DayOfWeek.SUNDAY) {
+        DayOfWeek diaDeLaSemana = fechaEntrada.getDayOfWeek();
+        if (diaDeLaSemana == DayOfWeek.SATURDAY || diaDeLaSemana == DayOfWeek.SUNDAY) {
             Integer totalHoras = totalHoras(fechaEntrada, fechaSalida);
-            return total = (totalHoras * precioBaseHora) + (precioBaseHora * totalHoras * 0.25);
+            return (totalHoras * precioBaseHora) + (precioBaseHora * totalHoras * 0.25);
         }else {
             for (int i = fechaEntrada.getHour(); i < fechaSalida.getHour(); i++) {
 
                 if (i >= HORA_NOCTURNA) {
-                   // Integer totalHoras = totalHoras(fechaEntrada, fechaSalida);
+
                     total = precioBaseHora + (precioBaseHora * 0.15) + total;
 
                 } else {
-                    //Integer totalHoras = totalHoras(fechaEntrada, fechaSalida);
+
                     total = precioBaseHora + total;
                 }
             }
@@ -90,10 +90,7 @@ public class Vehiculo {
     }
 
     public Integer totalHoras(LocalDateTime fechaEntrada, LocalDateTime fechaSalida){
-        Integer horasEntrada = fechaEntrada.getHour();
-        Integer horasSalida = fechaSalida.getHour();
-        Integer totalHoras = horasSalida - horasEntrada;
-        return totalHoras;
+        return fechaEntrada.getHour() - fechaSalida.getHour();
     }
 
 }
