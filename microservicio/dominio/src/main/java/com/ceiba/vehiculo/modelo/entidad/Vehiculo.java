@@ -90,7 +90,7 @@ public class Vehiculo {
     }
 
     public Integer totalHoras(LocalDateTime fechaEntrada, LocalDateTime fechaSalida){
-        return fechaEntrada.getHour() - fechaSalida.getHour();
+        return fechaSalida.getHour() - fechaEntrada.getHour();
     }
 
 }
