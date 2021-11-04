@@ -105,20 +105,7 @@ public class ComandoControladorVehiculoTest {
                 .andExpect(content().json("{'nombreExcepcion':'ExcepcionDuplicidad', 'mensaje': 'El vehiculo no existe en el sistema'}"));
 
     }
-    /**
-    @Test
-    void deberiaFallarAlActualizarUnVehiculoSinElId()throws Exception{
-        // arrange
-        ComandoVehiculo vehiculo = new ComandoVehiculoTestDataBuilder().conId(null).build();
-        // act - assert
-        mockMvc.perform(put("/vehiculo/{id}",vehiculo.getId())
-                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(vehiculo)))
-                .andExpect(status().isMethodNotAllowed())
-                .andExpect(content().json("{'nombreExcepcion':'ExcepcionDuplicidad', 'mensaje': 'El vehiculo no existe en el sistema'}"));
 
-    }
-*/
     @Test
     @DisplayName("Debe eliminar un vehiculo")
     void debeEliminarUnVehiculo() throws Exception{
