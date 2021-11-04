@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
 
-@Getter
+
 public class Vehiculo {
     private static final String SE_DEBE_INGRESAR_LA_PLACA = "Se debe ingresar la placa";
     private static final String SE_DEBE_INGRESAR_EL_ID_ESPACIO = "Se debe ingresar el id espacio";
@@ -19,10 +19,8 @@ public class Vehiculo {
     private static final String SE_DEBE_INGRESAR_LA_FECHA_ENTRADA = "Se debe ingresar la fecha de entrada del vehiculo";
     private static final String SE_DEBE_INGRESA_EL_PRECIO_BASE_POR_HORA = "Se debe ingresar el precio base por hora";
     private static final String EL_ESTACIONAMIENTO_TODAVIA_NO_ABRE = "El estacionamiento todavia no abre";
-    private static final String LA_HORA_DE_ENTRAD_NO_ES_VALIDA = "La hora de entrada no es valida";
 
     private static final Integer HORA_INICIO_JORNADA = 6;
-    private static final Integer HORA_FIN_JORNADA = 1;
     private static final Integer HORA_NOCTURNA = 18;
 
 
@@ -65,7 +63,49 @@ public class Vehiculo {
         this.precioBaseHora = precioBaseHora;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public String getPlaca() {
+        return placa;
+    }
+
+    public Long getIdEspacio() {
+        return idEspacio;
+    }
+
+    public String getTipoVehiculo() {
+        return tipoVehiculo;
+    }
+
+    public String getModeloVehiculo() {
+        return modeloVehiculo;
+    }
+
+    public String getNombrePropietario() {
+        return nombrePropietario;
+    }
+
+    public String getApellidoPropietario() {
+        return apellidoPropietario;
+    }
+
+    public LocalDateTime getFechaEntrada() {
+        return fechaEntrada;
+    }
+
+    public LocalDateTime getFechaSalida() {
+        return fechaSalida;
+    }
+
+    public Double getTotalPagar() {
+        return totalPagar;
+    }
+
+    public Double getPrecioBaseHora() {
+        return precioBaseHora;
+    }
 
     public Double calcularTotal(Double precioBaseHora, LocalDateTime fechaEntrada, LocalDateTime fechaSalida) {
         Double total = 0.0;
