@@ -1,11 +1,10 @@
 package com.ceiba.espacio.modelo.entidad;
 
-import lombok.Getter;
 
 
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
-@Getter
+
 public class Espacio {
     private static final String SE_DEBE_INGRESAR_EL_NOMBRE = "Se debe ingresar el nombre";
     private static final String SE_DEBE_INGRESAR_EL_ESTADO = "Se debe ingresar el estado";
@@ -25,4 +24,15 @@ public class Espacio {
         this.estado = estado;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
 }

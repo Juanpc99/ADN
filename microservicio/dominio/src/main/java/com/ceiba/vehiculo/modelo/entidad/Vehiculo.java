@@ -1,7 +1,6 @@
 package com.ceiba.vehiculo.modelo.entidad;
 
-import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
-import lombok.Getter;
+
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
