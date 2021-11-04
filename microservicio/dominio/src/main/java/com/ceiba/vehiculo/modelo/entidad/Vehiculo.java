@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
 
-
+@Getter
 public class Vehiculo {
     private static final String SE_DEBE_INGRESAR_LA_PLACA = "Se debe ingresar la placa";
     private static final String SE_DEBE_INGRESAR_EL_ID_ESPACIO = "Se debe ingresar el id espacio";
