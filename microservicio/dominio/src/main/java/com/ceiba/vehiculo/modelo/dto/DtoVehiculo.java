@@ -1,7 +1,6 @@
 package com.ceiba.vehiculo.modelo.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+
 
 import java.time.LocalDateTime;
 
@@ -43,39 +42,5 @@ public class DtoVehiculo {
         return placa;
     }
 
-    public Long getIdEspacio() {
-        return idEspacio;
-    }
 
-    public String getTipoVehiculo() {
-        return tipoVehiculo;
-    }
-
-    public String getModeloVehiculo() {
-        return modeloVehiculo;
-    }
-
-    public String getNombrePropietario() {
-        return nombrePropietario;
-    }
-
-    public String getApellidoPropietario() {
-        return apellidoPropietario;
-    }
-
-    public LocalDateTime getFechaEntrada() {
-        return fechaEntrada;
-    }
-
-    public LocalDateTime getFechaSalida() {
-        return fechaSalida;
-    }
-
-    public Double getTotalPagar() {
-        return totalPagar;
-    }
-
-    public Double getPrecioBaseHora() {
-        return precioBaseHora;
-    }
 }
