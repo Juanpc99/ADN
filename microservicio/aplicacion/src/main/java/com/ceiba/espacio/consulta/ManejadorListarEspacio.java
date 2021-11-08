@@ -13,5 +13,5 @@ public class ManejadorListarEspacio {
 
     public ManejadorListarEspacio(DaoEspacio daoEspacio){ this.daoEspacio = daoEspacio;}
 
-    public List<DtoEspacio> ejecutar(){ return this.daoEspacio.listar();}
+    public List<DtoEspacio> ejecutar(String estado){ return this.daoEspacio.listar(estado);}
 }

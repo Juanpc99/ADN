@@ -18,6 +18,12 @@ public interface RepositorioEspacio {
     void actualizar(Espacio espacio);
 
     /**
+     * Permite actualizar el estado
+     * @param espacio
+     */
+    void actualizarEstado(Long id, String estado);
+
+    /**
      * Permite eliminar un espacio
      * @param id
      */

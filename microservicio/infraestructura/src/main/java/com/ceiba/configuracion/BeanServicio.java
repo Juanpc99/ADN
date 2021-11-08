@@ -2,6 +2,7 @@ package com.ceiba.configuracion;
 
 import com.ceiba.espacio.puerto.repositorio.RepositorioEspacio;
 import com.ceiba.espacio.servicio.ServicioActualizarEspacio;
+import com.ceiba.espacio.servicio.ServicioActualizarEstadoEspacio;
 import com.ceiba.espacio.servicio.ServicioCrearEspacio;
 import com.ceiba.espacio.servicio.ServicioEliminarEspacio;
 import com.ceiba.vehiculo.puerto.repositorio.RepositorioVehiculo;
@@ -28,6 +29,10 @@ public class BeanServicio {
     @Bean
     public ServicioActualizarEspacio servicioActualizarEspacio(RepositorioEspacio repositorioEspacio) {
         return new ServicioActualizarEspacio(repositorioEspacio);
+    }
+    @Bean
+    public ServicioActualizarEstadoEspacio servicioActualizarEstadoEspacio(RepositorioEspacio repositorioEspacio){
+        return  new ServicioActualizarEstadoEspacio(repositorioEspacio);
     }
     @Bean
     public ServicioCrearVehiculo servicioCrearVehiculo(RepositorioVehiculo repositorioVehiculo,

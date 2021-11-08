@@ -27,6 +27,9 @@ public class RepositorioEspacioPostgres implements RepositorioEspacio {
     @SqlStatement(namespace = "espacio", value = "existePorId")
     private static String sqlExistePorId;
 
+    @SqlStatement(namespace = "espacio", value = "actualizarEstado")
+    private static String sqlActualizarEstado;
+
     public RepositorioEspacioPostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -39,6 +42,13 @@ public class RepositorioEspacioPostgres implements RepositorioEspacio {
     @Override
     public void actualizar(Espacio espacio) {
         this.customNamedParameterJdbcTemplate.actualizar(espacio, sqlActualizar);
+    }
+
+    @Override
+    public void actualizarEstado(Long id, String estado) {
+        Espacio espacio = new Espacio(id, "",estado);
+
+        this.customNamedParameterJdbcTemplate.actualizar(espacio, sqlActualizarEstado);
     }
 
     @Override

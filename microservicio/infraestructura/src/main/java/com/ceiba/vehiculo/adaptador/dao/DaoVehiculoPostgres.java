@@ -3,7 +3,9 @@ package com.ceiba.vehiculo.adaptador.dao;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import com.ceiba.vehiculo.modelo.dto.DtoVehiculo;
+import com.ceiba.vehiculo.modelo.entidad.Vehiculo;
 import com.ceiba.vehiculo.puerto.dao.DaoVehiculo;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,6 +18,9 @@ public class DaoVehiculoPostgres implements DaoVehiculo {
     @SqlStatement(namespace = "vehiculo", value = "listar")
     private static String sqlListar;
 
+    @SqlStatement(namespace = "vehiculo", value = "buscarId")
+    private static String sqlBuscarId;
+
     public DaoVehiculoPostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -24,4 +29,12 @@ public class DaoVehiculoPostgres implements DaoVehiculo {
     public List<DtoVehiculo> listar() {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoVehiculo());
     }
+
+    @Override
+    public DtoVehiculo buscarPorId(Long id) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id", id);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlBuscarId, paramSource, new MapeoVehiculo()).stream().findFirst().get();
+    }
+
 }

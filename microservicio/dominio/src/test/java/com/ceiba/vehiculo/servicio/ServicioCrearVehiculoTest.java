@@ -56,7 +56,7 @@ public class ServicioCrearVehiculoTest {
         Mockito.when(repositorioEspacio.existePorId(Mockito.anyLong())).thenReturn(true);
         Mockito.when(repositorioVehiculo.existePorIdEspacio(Mockito.anyLong())).thenReturn(true);
         ServicioCrearVehiculo servicioCrearVehiculo = new ServicioCrearVehiculo(repositorioVehiculo, repositorioEspacio);
-
+        // verify
         BasePrueba.assertThrows(()->servicioCrearVehiculo.ejecutar(vehiculo), ExcepcionDuplicidad.class, EL_ESPACIO_YA_ESTA_OCUPADO);
     }
 
