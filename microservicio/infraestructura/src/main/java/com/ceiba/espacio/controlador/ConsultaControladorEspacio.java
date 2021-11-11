@@ -1,5 +1,6 @@
 package com.ceiba.espacio.controlador;
 
+import com.ceiba.espacio.consulta.ManejadorBuscarPorIdEspacio;
 import com.ceiba.espacio.consulta.ManejadorListarEspacio;
 import com.ceiba.espacio.consulta.ManejadorListarTodosEspacio;
 import com.ceiba.espacio.modelo.dto.DtoEspacio;
@@ -18,10 +19,14 @@ import java.util.List;
 public class ConsultaControladorEspacio {
     private final ManejadorListarEspacio manejadorListarEspacio;
     private final ManejadorListarTodosEspacio manejadorListarTodosEspacio;
+    private final ManejadorBuscarPorIdEspacio manejadorBuscarPorIdEspacio;
 
-    public ConsultaControladorEspacio(ManejadorListarEspacio manejadorListarEspacio, ManejadorListarTodosEspacio manejadorListarTodosEspacio) {
+    public ConsultaControladorEspacio(ManejadorListarEspacio manejadorListarEspacio,
+                                      ManejadorListarTodosEspacio manejadorListarTodosEspacio,
+                                      ManejadorBuscarPorIdEspacio manejadorBuscarPorIdEspacio) {
         this.manejadorListarEspacio = manejadorListarEspacio;
         this.manejadorListarTodosEspacio = manejadorListarTodosEspacio;
+        this.manejadorBuscarPorIdEspacio = manejadorBuscarPorIdEspacio;
     }
 
     @GetMapping("/{estado}")
@@ -31,4 +36,8 @@ public class ConsultaControladorEspacio {
     @GetMapping
     @ApiOperation("Listar espacios")
     public List<DtoEspacio> listarr(){ return this.manejadorListarTodosEspacio.ejecutar();}
+
+    @GetMapping("/buscar/{id}")
+    @ApiOperation("Buscar espacio por id")
+    public DtoEspacio buscarPorId(@PathVariable Long id){return this.manejadorBuscarPorIdEspacio.ejecutar(id);}
 }

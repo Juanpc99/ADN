@@ -10,6 +10,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/vehiculo")
 @Api(tags = {"Controlador comando vehiculo "})
@@ -27,6 +29,8 @@ public class ComandoControladorVehiculo {
         this.manejadorEliminarVehiculo = manejadorEliminarVehiculo;
         this.manejadorCrearVehiculo = manejadorCrearVehiculo;
     }
+
+
     @PostMapping
     @ApiOperation("Crear vehiculo")
     public ComandoRespuesta<Long> crear(@RequestBody ComandoVehiculo comandoVehiculo) {

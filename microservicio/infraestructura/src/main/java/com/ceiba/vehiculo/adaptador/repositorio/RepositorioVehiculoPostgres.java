@@ -7,6 +7,8 @@ import com.ceiba.vehiculo.puerto.repositorio.RepositorioVehiculo;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+
 @Repository
 public class RepositorioVehiculoPostgres implements RepositorioVehiculo {
 

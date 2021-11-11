@@ -14,9 +14,16 @@ public interface DaoVehiculo {
     List<DtoVehiculo> listar();
 
     /**
-     *
+     *Permite buscar por id
      * @param id
      * @return
      */
     DtoVehiculo buscarPorId(Long id);
+
+    /**
+     * Permite listar por placa
+     * @param placa
+     * @return
+     */
+    List<DtoVehiculo> listarPorPlaca(String placa);
 }

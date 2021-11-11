@@ -1,0 +1,1 @@
+SELECT * FROM espacio WHERE id = :id;

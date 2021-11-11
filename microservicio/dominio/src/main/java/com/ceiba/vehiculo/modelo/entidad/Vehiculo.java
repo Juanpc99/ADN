@@ -2,12 +2,14 @@ package com.ceiba.vehiculo.modelo.entidad;
 
 
 
+import lombok.Data;
+
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-
 import static com.ceiba.dominio.ValidadorArgumento.*;
 
 
+@Data
 public class Vehiculo {
     private static final String SE_DEBE_INGRESAR_LA_PLACA = "Se debe ingresar la placa";
     private static final String SE_DEBE_INGRESAR_EL_ID_ESPACIO = "Se debe ingresar el id espacio";
@@ -37,7 +39,8 @@ public class Vehiculo {
 
     public Vehiculo(Long id, String placa, Long idEspacio, String tipoVehiculo, String modeloVehiculo,
                     String nombrePropietario, String apellidoPropietario, LocalDateTime fechaEntrada,
-                    LocalDateTime fechaSalida, Double precioBaseHora) {
+                    LocalDateTime fechaSalida,
+                    Double precioBaseHora) {
 
         validarObligatorio(placa, SE_DEBE_INGRESAR_LA_PLACA);
         validarObligatorio(idEspacio, SE_DEBE_INGRESAR_EL_ID_ESPACIO);
@@ -45,7 +48,6 @@ public class Vehiculo {
         validarObligatorio(modeloVehiculo, SE_DEBE_INGRESAR_EL_MODELO_DEL_VEHICULO);
         validarObligatorio(nombrePropietario, SE_DEBE_INGRESAR_EL_NOMBRE_DEL_PROPIETARIO);
         validarObligatorio(apellidoPropietario, SE_DEBE_INGRESAR_EL_APELLIDO_DEL_PROPIETARIO);
-        validarObligatorio(fechaEntrada, SE_DEBE_INGRESAR_LA_FECHA_ENTRADA);
         validarObligatorio(precioBaseHora, SE_DEBE_INGRESA_EL_PRECIO_BASE_POR_HORA);
         validarMenor(HORA_INICIO_JORNADA, fechaEntrada.getHour(), EL_ESTACIONAMIENTO_TODAVIA_NO_ABRE);
 
@@ -62,49 +64,7 @@ public class Vehiculo {
         this.precioBaseHora = precioBaseHora;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getPlaca() {
-        return placa;
-    }
-
-    public Long getIdEspacio() {
-        return idEspacio;
-    }
-
-    public String getTipoVehiculo() {
-        return tipoVehiculo;
-    }
-
-    public String getModeloVehiculo() {
-        return modeloVehiculo;
-    }
-
-    public String getNombrePropietario() {
-        return nombrePropietario;
-    }
-
-    public String getApellidoPropietario() {
-        return apellidoPropietario;
-    }
-
-    public LocalDateTime getFechaEntrada() {
-        return fechaEntrada;
-    }
-
-    public LocalDateTime getFechaSalida() {
-        return fechaSalida;
-    }
-
-    public Double getTotalPagar() {
-        return totalPagar;
-    }
-
-    public Double getPrecioBaseHora() {
-        return precioBaseHora;
-    }
 
     public Double calcularTotal(Double precioBaseHora, LocalDateTime fechaEntrada, LocalDateTime fechaSalida) {
         Double total = 0.0;

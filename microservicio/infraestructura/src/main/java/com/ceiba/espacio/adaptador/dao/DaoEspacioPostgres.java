@@ -20,6 +20,8 @@ public class DaoEspacioPostgres implements DaoEspacio {
     @SqlStatement(namespace = "espacio", value = "listarTodo")
     private static String sqlListarTodo;
 
+    @SqlStatement(namespace = "espacio", value = "buscarId")
+    private static String sqlBuscarId;
     public DaoEspacioPostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate){
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -35,5 +37,12 @@ public class DaoEspacioPostgres implements DaoEspacio {
     @Override
     public List<DtoEspacio> listarTodos() {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListarTodo,new MapeoEspacio());
+    }
+
+    @Override
+    public DtoEspacio busacrPorId(Long id) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id", id);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlBuscarId, paramSource, new MapeoEspacio()).stream().findFirst().get();
     }
 }

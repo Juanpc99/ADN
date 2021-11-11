@@ -19,5 +19,11 @@ public interface DaoEspacio {
      */
     List<DtoEspacio> listarTodos();
 
+    /**
+     * Permite buscar por id
+     * @return
+     */
+    DtoEspacio busacrPorId(Long id);
+
 
 }
