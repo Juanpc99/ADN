@@ -24,6 +24,9 @@ public class DaoVehiculoPostgres implements DaoVehiculo {
     @SqlStatement(namespace = "vehiculo", value = "buscarPorPlaca")
     private static String sqlBuscarPorPlaca;
 
+    @SqlStatement(namespace = "vehiculo", value = "buscarPorIdEspacio")
+    private static String sqlBuscarIdEspacio;
+
     public DaoVehiculoPostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -45,6 +48,13 @@ public class DaoVehiculoPostgres implements DaoVehiculo {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("placa", placa);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlBuscarPorPlaca, paramSource, new MapeoVehiculo());
+    }
+
+    @Override
+    public DtoVehiculo buscarPorIdEspacio(Long idEspacio) {
+       MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+       parameterSource.addValue("idEspacio", idEspacio);
+       return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlBuscarIdEspacio, parameterSource, new MapeoVehiculo()).stream().findFirst().get();
     }
 
 }

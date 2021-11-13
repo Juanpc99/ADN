@@ -26,4 +26,11 @@ public interface DaoVehiculo {
      * @return
      */
     List<DtoVehiculo> listarPorPlaca(String placa);
+
+    /**
+     * Permite buscar por id espacio
+     * @param idEspacio
+     * @return
+     */
+    DtoVehiculo buscarPorIdEspacio(Long idEspacio);
 }
